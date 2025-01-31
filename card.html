@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Card Game</title>
-        <link rel="stylesheet" href="card.css">
-    </head>
-    <body>
-        <div id="game-container">
-            <h1>Card Game</h1>
-            <div id="deck"></div>
-            <button id="shuffle-btn">Shuffle Cards</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <link rel="stylesheet" href="card.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Card Game</h1>
+        <div id="deck"></div>
+        <div id="player-hand">
+            <h2>Your Hand</h2>
         </div>
-        <script src="card.js"></script>
-    </body>
-    </html>
+        <button id="shuffle-btn">Shuffle Cards</button>
+        <p id="message"></p>
+    </div>
+    <script src="card.js"></script>
+</body>
+</html>

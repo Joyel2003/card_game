@@ -1,52 +1,64 @@
-// script.js
-
 const suits = ['♠', '♥', '♦', '♣'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
 let deck = [];
+let playerHand = [];
+let selectedCard = null;
 
-// Generate deck
 function createDeck() {
     deck = [];
     suits.forEach(suit => {
         values.forEach(value => {
-            deck.push(`${value} ${suit}`);
+            deck.push({ value, suit });
         });
     });
 }
 
-// Shuffle deck
 function shuffleDeck() {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [deck[i], deck[j]] = [deck[j], deck[i]]; // Swap elements
+        [deck[i], deck[j]] = [deck[j], deck[i]]; 
     }
 }
 
-// Render cards on the page
-function renderDeck() {
-    const deckContainer = document.getElementById('deck');
-    deckContainer.innerHTML = ''; // Clear the deck
-    deck.forEach(card => {
+function dealHand() {
+    playerHand = [];
+    for (let i = 0; i < 5; i++) {
+        playerHand.push(deck.pop()); 
+    }
+}
+
+function renderPlayerHand() {
+    const handContainer = document.getElementById('player-hand');
+    handContainer.innerHTML = ''; 
+    playerHand.forEach(card => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
-        cardElement.textContent = card;
-        deckContainer.appendChild(cardElement);
+        cardElement.textContent = `${card.value} ${card.suit}`;
+        cardElement.addEventListener('click', () => handleCardClick(card));
+        handContainer.appendChild(cardElement);
     });
 }
 
-// Initialize game
+function handleCardClick(card) {
+    selectedCard = card;
+    document.getElementById('message').textContent = `You selected: ${card.value} ${card.suit}`;
+}
+
 function initializeGame() {
     createDeck();
     shuffleDeck();
-    renderDeck();
+    dealHand();
+    renderPlayerHand();
+    document.getElementById('message').textContent = 'Select a card!';
 }
 
-// Shuffle button functionality
 document.getElementById('shuffle-btn').addEventListener('click', () => {
+    createDeck();
     shuffleDeck();
-    renderDeck();
+    dealHand();
+    renderPlayerHand();
+    document.getElementById('message').textContent = 'Cards shuffled. Select a card!';
 });
 
-// Start the game by initializing
 initializeGame();

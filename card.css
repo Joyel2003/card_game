@@ -1,4 +1,5 @@
-body{
+/* styles.css */
+body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -7,16 +8,19 @@ body{
     margin: 0;
     background-color: #f2f2f2;
 }
-#game-container{
+
+#game-container {
     text-align: center;
 }
-#deck{
+
+#deck, #player-hand {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
-.card{
+
+.card {
     width: 100px;
     height: 140px;
     margin: 10px;
@@ -28,8 +32,15 @@ body{
     font-size: 20px;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s;
 }
-button{
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -38,6 +49,13 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-button:hover{
+
+button:hover {
     background-color: #45a049;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
